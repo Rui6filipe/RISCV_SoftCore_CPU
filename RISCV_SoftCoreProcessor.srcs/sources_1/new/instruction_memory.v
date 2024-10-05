@@ -28,7 +28,7 @@ module instruction_memory(
 reg[31:0] RAM[63:0];
     
 initial begin
-    $readmemh("riscvtest.txt", RAM);
+    $readmemh("P:/RISCV_SoftCoreProcessor.sim/sim_1/behav/xsim/riscvtest.txt", RAM);
 end
 
 assign Instr = RAM[PC[31:2]]; //word aligned

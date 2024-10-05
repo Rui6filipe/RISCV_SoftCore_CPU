@@ -23,8 +23,8 @@
 module testbench();
 
 reg clk, reset;
-reg[31:0]  WriteData, DataAdr;
-reg MemWrite;
+wire[31:0]  WriteData, DataAdr;
+wire MemWrite;
 
 cpu_with_memory dut(.clk(clk), .reset(reset), .WriteData(WriteData), .DataAdr(DataAdr), .MemWrite(MemWrite));
 

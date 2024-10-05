@@ -28,17 +28,17 @@ module controler(
     output wire[2:0] ALUControl,
     output wire RegWrite,
     output wire[1:0] ImmSrc,
-    output wire ALUSrc,
+    output wire ALUSrc, PCSrc,
     output wire MemWrite,
     output wire[1:0] ResultSrc
     );
     
     
-wire ALUOp[1:0];
+wire [1:0] ALUOp;
 wire branch, jump;
     
 main_decoder maindec(Zero, op, RegWrite, ImmSrc, ALUSrc, MemWrite, ResultSrc, branch, ALUOp, jump);
-ALU_Decoder aludec(op[4:0], ALUOp, funct3, funct7, ALUControl);
+ALU_Decoder aludec(op[5], ALUOp, funct3, funct7, ALUControl);
 
 assign PCSrc = jump | (branch & Zero);
     

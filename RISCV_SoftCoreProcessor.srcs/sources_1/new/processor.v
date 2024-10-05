@@ -36,7 +36,7 @@ wire Zero;
 wire ALUSrc;
 wire[2:0] ALUControl ;
  
-controler cntrl(Instr[6:0], Instr[14:12], Instr[30], Zero, ALUControl, RegWrite, ImmSrc, ALUSrc, MemWrite, ResultSrc );       
+controler cntrl(Instr[6:0], Instr[14:12], Instr[30], Zero, ALUControl, RegWrite, ImmSrc, ALUSrc, PCSrc, MemWrite, ResultSrc );       
 datapath datap(clk, reset, PC, PCSrc, RegWrite, Instr, WriteData, ImmSrc, ResultSrc, ALUResult, Zero, ALUSrc, ReadData, ALUControl);
 
 endmodule

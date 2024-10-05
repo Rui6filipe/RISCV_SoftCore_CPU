@@ -47,7 +47,7 @@ mux_2 pcmux(PCPlus4, PCTarget, PCSrc, PCNext);
 
 // Register File Logic
 Reg_File rf(clk, RegWrite, Instr[19:15], Instr[24:20], Instr[11:7], Result, SrcA, WriteData);
-extend ext(Instr[31:7], ImmSrc, ImmExt);
+Extend ext(Instr[31:7], ImmSrc, ImmExt);
 
 // ALU Logic
 mux_2 srcbmux(WriteData, ImmExt, ALUSrc, SrcB);
