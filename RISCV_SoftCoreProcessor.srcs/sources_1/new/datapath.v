@@ -21,7 +21,7 @@
 
 
 module datapath(
-    input wire clk,
+    input wire clk, reset,
     output wire[31:0] PC,
     input wire PCSrc, RegWrite,
     input wire [31:0] Instr,
@@ -40,7 +40,7 @@ wire [31:0]Result;
 wire [31:0]SrcA, SrcB;
 
 // Next PC logic
-program_counter pc_reg(clk, PCNext, PC);
+program_counter pc_reg(clk, reset, PCNext, PC);
 Adder pcadd4(PC, 32'd4, PCPlus4);
 Adder pcaddbranch(PC, ImmExt, PCTarget);
 mux_2 pcmux(PCPlus4, PCTarget, PCSrc, PCNext);

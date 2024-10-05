@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 03.10.2024 23:24:35
+// Create Date: 04.10.2024 14:44:32
 // Design Name: 
-// Module Name: program_counter
+// Module Name: instruction_memory
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,14 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module program_counter(
-    input wire clk, reset,
-    input wire [31:0] pc_in,
-    output reg [31:0] pc_out
+module instruction_memory(
+    input wire[31:0] PC,
+    output wire[31:0] Instr
     );
-
-always@(posedge clk) begin
-    if (reset) pc_out <= 0;
-    else pc_out <= pc_in;  // Update program counter with non blocking assignement (sequential logic)
+    
+reg[31:0] RAM[63:0];
+    
+initial begin
+    $readmemh("riscvtest.txt", RAM);
 end
+
+assign Instr = RAM[PC[31:2]]; //word aligned
+
 endmodule

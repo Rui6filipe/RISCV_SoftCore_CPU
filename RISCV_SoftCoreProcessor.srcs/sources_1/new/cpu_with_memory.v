@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 03.10.2024 23:24:35
+// Create Date: 04.10.2024 14:57:26
 // Design Name: 
-// Module Name: program_counter
+// Module Name: cpu_with_memory
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,14 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module program_counter(
+module cpu_with_memory(
     input wire clk, reset,
-    input wire [31:0] pc_in,
-    output reg [31:0] pc_out
+    output wire[31:0]  WriteData, DataAdr,
+    output wire MemWrite
     );
+    
+wire[31:0] PC, Instr, ReadData;
+    
+processor cpu(clk, reset, PC, Instr, WriteData, DataAdr, ReadData, MemWrite);
+data_memory data_mem(clk, MemWrite, DataAdr, WriteData, ReadData);
+instruction_memory instr_mem(PC, Instr);
 
-always@(posedge clk) begin
-    if (reset) pc_out <= 0;
-    else pc_out <= pc_in;  // Update program counter with non blocking assignement (sequential logic)
-end
 endmodule

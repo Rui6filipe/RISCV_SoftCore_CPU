@@ -26,7 +26,7 @@ module Extend(
     output reg[31:0] ImmExt
     );
     
-always @(*)
+always @(*) begin
     case (ImmSrc) 
         2'b00: ImmExt = {{20{Instr[31]}}, Instr[31:20]}; // Type I
         2'b01: ImmExt = {{20{Instr[31]}}, Instr[31:25], Instr[11:7]}; // Type S
